@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/img_avt"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/avata"></ImageView>
+    <TextView
+        android:id="@+id/txt_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/img_avt"
+        android:text="Nguyen Huy Hoan"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"></TextView>
+    <TextView
+        android:id="@+id/txt_timeSent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/txt_username"
+        android:layout_alignTop="@+id/txt_username"
+        android:layout_alignBottom="@+id/txt_username"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="10:03 20/02/2022"
+        android:textSize="15dp"
+        android:fontFamily="sans-serif-light"></TextView>
+    <TextView
+        android:id="@+id/txt_recent_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_username"
+        android:layout_toRightOf="@+id/img_avt"
+        android:layout_alignBottom="@id/img_avt"
+        android:layout_marginLeft="10dp"
+        android:gravity="left|center"
+        android:text="hom nay di an di"
+        android:textSize="18dp"></TextView>
+
+</RelativeLayout>

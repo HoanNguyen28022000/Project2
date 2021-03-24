@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="2dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="1dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_avt"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avata"></ImageView>
+            <TextView
+                android:id="@+id/txt_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_avt"
+                android:text="Nguyen Huy Hoan"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"></TextView>
+            <TextView
+                android:id="@+id/txt_timePosted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_username"
+                android:layout_below="@+id/txt_username"
+                android:text="22/03/2021"
+                android:textSize="15dp"></TextView>
+            <TextView
+                android:id="@+id/txt_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/img_avt"
+                android:text="troi hom nay nhieu may cuc"
+                android:textSize="20dp"></TextView>
+            <ImageView
+                android:id="@+id/img_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_status"
+                android:src="@drawable/avata"
+                ></ImageView>
+            <RelativeLayout
+                android:id="@+id/layout_show_interact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_post"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:id="@+id/img_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_baseline_favorite_24"></ImageView>
+                <TextView
+                    android:id="@+id/txt_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/img_like"
+                    android:text="100">
+                </TextView>
+                <TextView
+                    android:id="@+id/txt_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 comments"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp">
+                </TextView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_interact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_show_interact">
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:button="@drawable/ic_baseline_favorite_border_24"
+                    android:text="Like"
+                    android:checked="false"></com.google.android.material.checkbox.MaterialCheckBox>
+                <com.google.android.material.checkbox.MaterialCheckBox
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Comment"
+                    android:button="@drawable/ic_comment_outline"></com.google.android.material.checkbox.MaterialCheckBox>
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Share"
+                    android:button="@drawable/ic_share"></com.google.android.material.checkbox.MaterialCheckBox>
+
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/lst_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_interact"
+                android:visibility="gone"></ListView>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ChatRoom</string>
+    <string name="resgister"><u><b>Sign Up</b></u></string>
+    <string name="title_activity_news_feed">NewsFeed</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string-array name="menu">
+        <item>Log Out</item>
+        <item>Profile</item>
+        <item>Setting</item>
+    </string-array>
+</resources>

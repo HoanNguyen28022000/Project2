@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignIn"
+    android:background="@drawable/img_background">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@+id/txt_app"
+        android:layout_alignTop="@id/txt_app"
+        android:layout_alignBottom="@id/txt_app"
+        android:src="@drawable/back"></ImageView>
+
+
+    <TextView
+        android:id="@+id/txt_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Social"
+        android:textSize="70dp"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        android:fontFamily="cursive"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"></TextView>
+
+    <EditText
+        android:id="@+id/etxt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_app"
+        android:hint="Email"
+        android:textColorHint="@color/white"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"></EditText>
+
+
+    <EditText
+        android:id="@+id/etxt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etxt_email"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"></EditText>
+
+    <EditText
+        android:id="@+id/etxt_passConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etxt_password"
+        android:hint="Confirm Password"
+        android:textColorHint="@color/white"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"></EditText>
+
+
+    <Button
+        android:id="@+id/btn_resgister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="25dp"
+        android:text="Resgister"
+        android:textColor="@color/black"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/etxt_passConfirm"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/white"></Button>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_resgister"
+        android:layout_margin="30dp"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Large.Inverse"
+        android:visibility="invisible">
+
+    </ProgressBar>
+
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/avata"
+        android:id="@+id/img_avatar"
+        android:layout_margin="10dp"></ImageView>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/img_avatar"
+        android:layout_alignTop="@+id/img_avatar"
+        android:background="@drawable/message_left_background"
+        android:layout_marginRight="50dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_timeSent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="11:03 10/3/2021"
+        android:textColor="@color/white"
+        android:textSize="15dp"></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_message"
+        android:layout_below="@+id/txt_timeSent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:text="Hôm nay đi ăn đi "></TextView>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

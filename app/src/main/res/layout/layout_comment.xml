@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/img_avt"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/avata"></ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_avt"
+        android:layout_alignTop="@+id/img_avt"
+        android:background="@drawable/shape"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:id="@+id/txt_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Nguyen Huy Hoan"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-medium"></TextView>
+
+        <TextView
+            android:id="@+id/txt_timeSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_comment"
+            android:layout_alignLeft="@+id/txt_username"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="10:03 20/02/2022"
+            android:textSize="15dp"></TextView>
+
+        <TextView
+            android:id="@+id/txt_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_username"
+            android:layout_alignLeft="@+id/txt_username"
+            android:gravity="left|center"
+            android:text="hom nay di an di abhasc asiuhcasdc asicacna ascnaisc acac acascsdc wwcwec"
+            android:textSize="20dp"
+            android:textColor="@color/black"></TextView>
+    </RelativeLayout>
+
+</RelativeLayout>
