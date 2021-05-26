@@ -3,12 +3,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/newsfeed"
+    <LinearLayout
+        android:id="@+id/search_"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="35dp"
+        android:layout_toLeftOf="@+id/img_add_post"
+        android:orientation="horizontal"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape">
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_search"></ImageView>
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:gravity="bottom"-->
+<!--            android:background="@null"-->
+<!--            android:id="@+id/etxt_search"></EditText>-->
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_add_post"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/search_"
+        android:layout_alignTop="@+id/search_"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="2dp"
+        android:src="@drawable/ic_baseline_add_24"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape"></ImageView>
+
+    <ListView
+        android:id="@+id/listPosts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_">
 
     </ListView>
-
 
 </RelativeLayout>

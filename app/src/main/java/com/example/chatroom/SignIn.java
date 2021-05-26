@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +57,7 @@ public class SignIn extends AppCompatActivity {
                     myAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.e("TAG0", "-----------------");
                             if(task.isSuccessful()) {
                                 goToMain();
                             } else {
@@ -65,7 +67,7 @@ public class SignIn extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Email or Password wasn't filled", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Email or Password wasn't filled", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -85,14 +87,16 @@ public class SignIn extends AppCompatActivity {
         super.onStart();
         FirebaseUser currUser= FirebaseAuth.getInstance().getCurrentUser();
         if(currUser != null) {
-            Intent intent = new Intent(SignIn.this, MainActivity.class);
+            Intent intent = new Intent(SignIn.this, Home.class);
             startActivity(intent);
             finish();
         }
     }
 
     private void goToMain() {
-        Intent intent = new Intent(SignIn.this, MainActivity.class);
+//        System.out.println(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        Intent intent = new Intent(SignIn.this, Home.class);
+        intent.putExtra("userID", FirebaseAuth.getInstance().getCurrentUser().getUid());
         startActivity(intent);
         finish();
     }

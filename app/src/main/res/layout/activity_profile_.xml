@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"></ImageView>
+
+    <ImageView
+        android:id="@+id/btn_edit"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_edit"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"></ImageView>
+
+    <ImageView
+        android:id="@+id/btn_save"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_tick"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"></ImageView>
+
+    <ImageView
+        android:id="@+id/btn_cancel"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_baseline_close_24"
+        android:layout_toLeftOf="@id/btn_save"
+        android:layout_alignTop="@id/btn_save"
+        android:visibility="gone"></ImageView>
+
+
+    <ImageView
+        android:id="@+id/img_avt"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_round_perm_identity_24"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"></ImageView>
+
+    <ImageView
+        android:id="@+id/btn_updateAvt"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_camera"
+        android:layout_alignBottom="@+id/img_avt"
+        android:layout_alignRight="@+id/img_avt"></ImageView>
+
+    <ImageView
+        android:id="@+id/btn_saveAvt"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_tick"
+        android:layout_alignBottom="@+id/img_avt"
+        android:layout_alignRight="@+id/img_avt"
+        android:visibility="gone"></ImageView>
+
+    <TextView
+        android:id="@+id/txt_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nguyen Huy Hoan"
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-black"
+        android:layout_below="@+id/img_avt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"></TextView>
+
+    <EditText
+        android:id="@+id/etxt_username"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Nguyen Huy Hoan"
+        android:textSize="30dp"
+        android:background="@null"
+        android:fontFamily="sans-serif-black"
+        android:layout_below="@+id/img_avt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible"></EditText>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/layout_line1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/txt_username"
+        android:layout_marginBottom="10dp"
+        android:background="@color/black"></LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/infor_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_line1"
+        android:layout_margin="20dp">
+        <ImageView
+            android:id="@+id/ic_phone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_phone_24"></ImageView>
+
+        <TextView
+            android:id="@+id/txt_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0329333964"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/ic_phone"
+            android:layout_alignBottom="@+id/ic_phone"
+            android:layout_marginLeft="20dp"
+            android:visibility="visible"></TextView>
+
+        <EditText
+            android:id="@+id/etxt_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0329333964"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/ic_phone"
+            android:layout_alignBottom="@+id/ic_phone"
+            android:background="@null"
+            android:layout_marginLeft="20dp"
+            android:visibility="invisible"></EditText>
+
+
+        <ImageView
+            android:id="@+id/ic_email"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/txt_phone"
+            android:src="@drawable/ic_baseline_email_24"></ImageView>
+
+        <TextView
+            android:id="@+id/txt_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ic_email"
+            android:layout_alignLeft="@+id/txt_phone"
+            android:text="Bigone2K@gmai.com"
+            android:textSize="20dp"></TextView>
+
+        <EditText
+            android:id="@+id/etxt_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ic_email"
+            android:layout_alignLeft="@+id/etxt_phone"
+            android:layout_alignBottom="@+id/ic_email"
+            android:background="@null"
+            android:text="Bigone2K@gmai.com"
+            android:textSize="20dp"
+            android:visibility="invisible"></EditText>
+
+        <ImageView
+            android:id="@+id/ic_address"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_location_on_24"
+            android:layout_below="@+id/ic_email"
+            android:layout_marginTop="10dp"></ImageView>
+
+        <TextView
+            android:id="@+id/txt_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ha Dong- Ha noi"
+            android:textSize="20dp"
+            android:layout_alignTop="@+id/ic_address"
+            android:layout_alignLeft="@+id/txt_email"></TextView>
+
+        <EditText
+            android:id="@+id/etxt_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ha Dong- Ha noi"
+            android:textSize="20dp"
+            android:background="@null"
+            android:layout_alignTop="@+id/ic_address"
+            android:layout_alignLeft="@+id/etxt_email"
+            android:layout_alignBottom="@id/ic_address"
+            android:visibility="invisible"></EditText>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/layout_line2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/infor_layout"
+        android:layout_marginTop="10dp"
+        android:background="@color/black"></LinearLayout>
+
+
+</RelativeLayout>

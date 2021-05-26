@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_baseline_close_24"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"></ImageView>
+
+            <ImageView
+                android:id="@+id/btn_dialogDelete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_toLeftOf="@+id/btn_close"
+                android:src="@drawable/ic_delete"></ImageView>
+
+            <ImageView
+                android:id="@+id/btn_edit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_toLeftOf="@id/btn_dialogDelete"
+                android:src="@drawable/ic_edit"
+                android:layout_marginRight="10dp"></ImageView>
+
+            <ImageView
+                android:id="@+id/img_avt"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_round_perm_identity_24"></ImageView>
+            <TextView
+                android:id="@+id/txt_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_avt"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"></TextView>
+            <ImageView
+                android:id="@+id/ic_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txt_username"
+                android:layout_below="@+id/txt_username"
+                android:src="@drawable/ic_round_access_time_24"></ImageView>
+            <TextView
+                android:id="@+id/txt_timePosted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ic_time"
+                android:layout_below="@+id/txt_username"
+                android:layout_alignBottom="@+id/ic_time"
+                android:text=""
+                android:textSize="15dp"></TextView>
+            <TextView
+                android:id="@+id/txt_itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Tên sản phẩm: "
+                android:textSize="18dp"
+                android:layout_below="@+id/img_avt">
+            </TextView>
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@id/txt_itemName"
+            android:layout_alignBottom="@id/txt_itemName">
+        </TextView>
+
+            <TextView
+                android:id="@+id/txt_itemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_itemName"
+                android:text="Giá :"
+                android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@id/txt_itemPrice"
+            android:layout_alignBottom="@id/txt_itemPrice">
+        </TextView>
+
+
+            <TextView
+                android:id="@+id/txt_itemStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_itemPrice"
+                android:text="Trạng thái :"
+                android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/itemStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@id/txt_itemStatus"
+            android:layout_alignBottom="@id/txt_itemStatus">
+        </TextView>
+
+            <TextView
+                android:id="@+id/txt_itemDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/txt_itemStatus"
+                android:text="Mô tả :"
+                android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/itemDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@id/txt_itemDetail"
+            android:layout_alignBottom="@id/txt_itemDetail">
+        </TextView>
+
+            <ImageView
+                android:id="@+id/img_item"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_below="@id/txt_itemDetail"
+                ></ImageView>
+            <RelativeLayout
+                android:id="@+id/layout_interact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_item">
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chk_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:button="@drawable/ic_baseline_favorite_border_24"
+                    android:text="theo dõi"
+                    android:checked="false"></com.google.android.material.checkbox.MaterialCheckBox>
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chk_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:text="bình luận"
+                    android:button="@drawable/ic_comment_outline"></com.google.android.material.checkbox.MaterialCheckBox>
+
+            </RelativeLayout>
+
+</RelativeLayout>

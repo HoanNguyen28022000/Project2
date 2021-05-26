@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:background="@drawable/bg_conner_gray">
+
+            <ImageView
+                android:id="@+id/ic_time"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignLeft="@+id/txt_username"
+                android:src="@drawable/ic_time_white"></ImageView>
+            <TextView
+                android:id="@+id/txt_timePosted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ic_time"
+                android:layout_alignBottom="@+id/ic_time"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Tên sản phẩm: "
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_below="@+id/ic_time">
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/txt_itemStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Chưa bán"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_conner_green"
+                android:padding="5dp"
+                android:textSize="15dp"></TextView>
+
+</RelativeLayout>

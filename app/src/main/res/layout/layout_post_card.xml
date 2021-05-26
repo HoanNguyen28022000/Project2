@@ -18,108 +18,102 @@
                 android:id="@+id/img_avt"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/avata"></ImageView>
+                android:src="@drawable/ic_round_perm_identity_24"></ImageView>
             <TextView
                 android:id="@+id/txt_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/img_avt"
-                android:text="Nguyen Huy Hoan"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:textSize="20dp"></TextView>
-            <TextView
-                android:id="@+id/txt_timePosted"
+            <ImageView
+                android:id="@+id/ic_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/txt_username"
                 android:layout_below="@+id/txt_username"
-                android:text="22/03/2021"
-                android:textSize="15dp"></TextView>
+                android:src="@drawable/ic_round_access_time_24"></ImageView>
             <TextView
-                android:id="@+id/txt_status"
+                android:id="@+id/txt_timePosted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_below="@+id/img_avt"
-                android:text="troi hom nay nhieu may cuc"
-                android:textSize="20dp"></TextView>
+                android:layout_toRightOf="@+id/ic_time"
+                android:layout_below="@+id/txt_username"
+                android:layout_alignBottom="@+id/ic_time"
+                android:text=""
+                android:textSize="15dp"></TextView>
+            <TextView
+                android:id="@+id/txt_itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Tên sản phẩm: "
+                android:textSize="18dp"
+                android:layout_below="@+id/img_avt">
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_itemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_itemName"
+                android:text="Giá :"
+                android:textSize="18dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_itemStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_itemPrice"
+                android:text="Trạng thái :"
+                android:textSize="18dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_itemDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@+id/txt_itemStatus"
+                android:text="Mô tả :"
+                android:textSize="18dp"></TextView>
+
             <ImageView
-                android:id="@+id/img_post"
+                android:id="@+id/img_item"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txt_status"
-                android:src="@drawable/avata"
+                android:layout_height="400dp"
+                android:layout_below="@id/txt_itemDetail"
                 ></ImageView>
-            <RelativeLayout
-                android:id="@+id/layout_show_interact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img_post"
-                android:layout_margin="10dp">
-                <ImageView
-                    android:id="@+id/img_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_baseline_favorite_24"></ImageView>
-                <TextView
-                    android:id="@+id/txt_likes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/img_like"
-                    android:text="100">
-                </TextView>
-                <TextView
-                    android:id="@+id/txt_comments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="100 comments"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp">
-                </TextView>
-            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/layout_interact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_show_interact">
+                android:layout_below="@+id/img_item">
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/checkbox_like"
+                    android:id="@+id/chk_follow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="50dp"
                     android:button="@drawable/ic_baseline_favorite_border_24"
-                    android:text="Like"
+                    android:text="theo dõi"
                     android:checked="false"></com.google.android.material.checkbox.MaterialCheckBox>
                 <com.google.android.material.checkbox.MaterialCheckBox
-
+                    android:id="@+id/chk_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="Comment"
-                    android:button="@drawable/ic_comment_outline"></com.google.android.material.checkbox.MaterialCheckBox>
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/btn_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="Share"
-                    android:button="@drawable/ic_share"></com.google.android.material.checkbox.MaterialCheckBox>
+                    android:text="bình luận"
+                    android:button="@drawable/ic_comment_outline"></com.google.android.material.checkbox.MaterialCheckBox>
 
             </RelativeLayout>
 
-            <ListView
+            <!--<ListView
                 android:id="@+id/lst_comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/layout_interact"
-                android:visibility="gone"></ListView>
+                android:layout_below="@id/layout_interact"></ListView>-->
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>

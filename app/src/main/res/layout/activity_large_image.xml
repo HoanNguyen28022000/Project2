@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LargeImageActivity"
+    android:background="@drawable/ic_dark_background">
+
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_close_dark"
+        android:layout_margin="10dp">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/tu_quan_ao_cu"></ImageView>
+
+
+
+
+</RelativeLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,34 +15,30 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="3">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/ic_home" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/ic_notifications" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/ic_menu" />
+            android:layout_marginRight="10dp">
 
         </com.google.android.material.tabs.TabLayout>
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tab"></androidx.viewpager.widget.ViewPager>
+        android:layout_above="@+id/tab"
+        android:layout_marginBottom="2dp">
+</androidx.viewpager.widget.ViewPager>
+
+    <ProgressBar
+        android:id="@+id/reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"></ProgressBar>
+
 
 </RelativeLayout>
