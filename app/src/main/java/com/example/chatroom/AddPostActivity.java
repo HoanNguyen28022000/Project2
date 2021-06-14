@@ -135,8 +135,7 @@ public class AddPostActivity extends AppCompatActivity {
                 String itemDetail= etxt_itemDetail.getText().toString();
                 String itemType= spinner_itemType.getSelectedItem().toString();
 
-
-                if(!TextUtils.isEmpty(itemName) && !TextUtils.isEmpty(itemPrice) && !TextUtils.isEmpty(itemPrice) && img_item.getDrawable() != null) {
+                if(!TextUtils.isEmpty(itemName) && !TextUtils.isEmpty(itemType) && !TextUtils.isEmpty(itemPrice) && img_item.getDrawable() != null) {
                     String userID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                     db.collection("User").document(userID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -196,7 +195,10 @@ public class AddPostActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Tên sản phẩm không đươc để trống", Toast.LENGTH_LONG).show();
                     } else if (TextUtils.isEmpty(itemPrice)) {
                         Toast.makeText(getApplicationContext(), "Gía sản phẩm không đươc để trống", Toast.LENGTH_LONG).show();
-                    } else {
+                    } else if (TextUtils.isEmpty(itemType)) {
+                        Toast.makeText(getApplicationContext(), "Loại sản phẩm không đươc để trống", Toast.LENGTH_LONG).show();
+                    }
+                    else {
                         Toast.makeText(getApplicationContext(), "Ảnh sản phẩm cần được cung cấp", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -240,7 +242,7 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     public String getTimeNow() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         return formatter.format(date);
     }

@@ -120,6 +120,7 @@ public class SearchActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
+                                    etxt_search.setText("");
                                     itemTypesSuggestions.clear();
                                     result.clear();
                                     for (DocumentSnapshot d : task.getResult().getDocuments()) {

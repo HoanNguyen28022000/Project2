@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,12 @@ import com.example.Model.Comment;
 import com.example.Model.ItemType;
 import com.example.Model.Notification;
 import com.example.Model.User;
+import com.example.SendNotificationPack.APIService;
+import com.example.SendNotificationPack.Client;
+import com.example.SendNotificationPack.Data;
+import com.example.SendNotificationPack.MyResponse;
+import com.example.SendNotificationPack.NotificationSender;
+import com.google.android.gms.cloudmessaging.CloudMessage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +43,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -45,11 +56,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CommentActivity extends AppCompatActivity {
     public static final int PICK_IMAGE= 101;
 
     String postID;
-    String fromUser;
+    String fromUserCreatePost;
 
     ListView lst_comments;
     ImageView btn_send;
@@ -64,10 +79,14 @@ public class CommentActivity extends AppCompatActivity {
     FirebaseFirestore db;
     Uri selectedImage;
 
+    private APIService apiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
+
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         lst_comments = (ListView)findViewById(R.id.lst_comments);
         btn_send= (ImageView) findViewById(R.id.btn_send);
@@ -79,7 +98,7 @@ public class CommentActivity extends AppCompatActivity {
 
 
         postID= getIntent().getStringExtra("postID");
-        fromUser= getIntent().getStringExtra("fromUser");
+        fromUserCreatePost= getIntent().getStringExtra("fromUser");
 
         lstComments= new ArrayList<>();
         db=FirebaseFirestore.getInstance();
@@ -101,7 +120,7 @@ public class CommentActivity extends AppCompatActivity {
                 img_message.getLayoutParams().height=0;
                 img_message.getLayoutParams().width=0;
                 img_message.requestLayout();
-                btn_choseImg.setVisibility(View.INVISIBLE);
+                btn_choseImg.setVisibility(View.VISIBLE);
             }
         });
 
@@ -121,8 +140,10 @@ public class CommentActivity extends AppCompatActivity {
                     db.collection("User").document(myID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> taskUser) {
+                            String username= taskUser.getResult().getString("username");
+                            String avtResource= taskUser.getResult().getString("avtResource");
                             if (taskUser.isSuccessful()) {
-                                Comment comment= new Comment(myID, taskUser.getResult().getString("avtResource"), taskUser.getResult().getString("username"), postID, message, getTimeNow());
+                                Comment comment= new Comment(myID, avtResource, username, postID, message, getTimeNow());
                                 db.collection("Comment").document(postID).collection("List_Comment").add(comment).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -142,6 +163,16 @@ public class CommentActivity extends AppCompatActivity {
                                                         public void onSuccess(Uri uri) {
 //                                                            System.out.println("in add comment success : 3");
                                                             comment.setImg_message(uri.toString());
+                                                            task.getResult().set(comment).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+//                                                                    System.out.println("in add comment success : 4");
+                                                                    img_message.setImageDrawable(null);
+                                                                    img_message.getLayoutParams().height=0;
+                                                                    img_message.getLayoutParams().width=0;
+                                                                    img_message.requestLayout();
+                                                                }
+                                                            });
                                                         }
                                                     });
                                                 }
@@ -154,17 +185,7 @@ public class CommentActivity extends AppCompatActivity {
                                             });
                                         }
 
-                                        task.getResult().set(comment).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                                    System.out.println("in add comment success : 4");
-                                                img_message.setImageDrawable(null);
-                                                img_message.getLayoutParams().height=0;
-                                                img_message.getLayoutParams().width=0;
-                                                img_message.requestLayout();
-                                            }
-                                        });
-
+                                        WriteBatch writeBatch= db.batch();
                                         DocumentReference post = db.collection("Post").document(postID);
                                         post.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
@@ -179,18 +200,26 @@ public class CommentActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-
-                                        db.collection("Notification").add(new Notification(postID, 1, myID, taskUser.getResult().getString("avtResource"),
-                                                taskUser.getResult().getString("username"), "bình luận", fromUser, false, getTimeNow()));
-
-                                        Toast.makeText(getApplicationContext(), "đăng bài thành công", Toast.LENGTH_LONG).show();
+                                        Notification noti= new Notification(postID, 1, myID, avtResource, username, "bình luận", fromUserCreatePost, false, getTimeNow());
+                                        db.collection("Notification").add(noti).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                db.collection("token").document(fromUserCreatePost).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        String usertoken = task.getResult().getString("token");
+                                                        sendNotifications(usertoken, "MyApp", username+ " đã bình luận bài viết của bạn");
+                                                    }
+                                                });
+                                            }
+                                        });
                                     }
                                 });
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Bình luận không thể để trống", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Bình luận không thể để trống", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -205,9 +234,29 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     public String getTimeNow() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         return formatter.format(date);
+    }
+
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+                        Toast.makeText(getApplicationContext(), "Failed ", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

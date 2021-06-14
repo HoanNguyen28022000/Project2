@@ -29,6 +29,7 @@ import com.example.Fragment.MenuFragment;
 import com.example.Fragment.NotificationFragment;
 import com.example.Model.Notification;
 import com.example.Model.Post;
+import com.example.SendNotificationPack.Token;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
@@ -42,6 +43,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.FileNotFoundException;
@@ -68,6 +70,27 @@ public class Home extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        FirebaseUser currUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (currUser == null) {
+            Intent intent = new Intent(Home.this, SignIn.class);
+            startActivity(intent);
+            finish();
+        } else {
+            myID = currUser.getUid();
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+                    String refreshToken = task.getResult();
+                    Token token = new Token(refreshToken);
+                    FirebaseFirestore.getInstance().collection("token").document(myID).set(token).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                        }
+                    });
+                }
+            });
+        }
 
         viewPager= (ViewPager)findViewById(R.id.viewPager);
         tabLayout= (TabLayout)findViewById(R.id.tabLayout);
@@ -102,13 +125,14 @@ public class Home extends AppCompatActivity implements Serializable {
                             if(task.isSuccessful()) {
                                 WriteBatch writeBatch= db.batch();
                                 for (DocumentSnapshot d: task.getResult().getDocuments()) {
-                                    writeBatch.update(db.collection("Notification").document(d.getId()), "new", false).commit().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-                                        }
-                                    });
+                                    writeBatch.update(db.collection("Notification").document(d.getId()), "new", false);
                                 }
+                                writeBatch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
                             }
                         }
                     });
@@ -126,7 +150,6 @@ public class Home extends AppCompatActivity implements Serializable {
                 }
             }
         });
-
     }
 
     @Override
@@ -207,13 +230,6 @@ public class Home extends AppCompatActivity implements Serializable {
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseUser currUser= FirebaseAuth.getInstance().getCurrentUser();
-        if (currUser == null) {
-            Intent intent = new Intent(Home.this, SignIn.class);
-            startActivity(intent);
-            finish();
-        } else myID= currUser.getUid();
 
         lstNotifications= new ArrayList<>();
         listNotificationID= new ArrayList<>();

@@ -282,6 +282,7 @@ public class PostActivity extends AppCompatActivity {
 
                     Picasso.get().load(value.getString("avtResource")).into(img_avt);
                     txt_username.setText(value.getString("username"));
+                    txt_timePosted.setText(value.getString("timePosted"));
                     itemPrice.setText(String.valueOf(value.getLong("price").intValue())+ " VND");
                     itemName.setText(value.getString("itemName"));
                     if (value.getBoolean("status")) {

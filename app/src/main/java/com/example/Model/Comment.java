@@ -23,13 +23,6 @@ public class Comment {
         this.timeSent = time;
     }
 
-//    public Comment(String fromUser, String postParent, String message, String time, String img_message) {
-//        this.fromUser = fromUser;
-//        this.postParent = postParent;
-//        this.message = message;
-//        this.timeSent = time;
-//        this.img_message=img_message;
-//    }
 
     public String getCommentID() {
         return commentID;
